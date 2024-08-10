@@ -1,0 +1,25 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+div.container {
+    text-align: center;
+    background-color: #c4c7c9;
+    padding: 20px 0px;
+    margin: 0;
+}
+.st {
+    display: inline-block;
+    font-weight: 600;
+    font-family: "bootstrap-icons";
+    font-size: 25px;
+}
+.star::before{
+  content: "\f588";
+  color: #000000;
+  
+}
+.star-fill::before{
+  content: "\f586";
+  color: #ffff00;
+}
