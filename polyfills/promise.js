@@ -65,3 +65,16 @@ Promise.MySettled = function(promises){
 console.log(Promise.MySettled(promises));
 
 // =====================================
+
+
+
+Promise.myrace = function(promises){
+    return new Promise((resolve, reject) => {
+       for(const p of promises){
+         p.then((res) => resolve(res))
+         .catch((err) => reject(err));
+       }
+    })
+}
+
+Promise.myrace([promise1, promise2]).then((resp) => console.log(resp)).catch((erro) => console.log(erro))

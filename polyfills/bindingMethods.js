@@ -28,3 +28,27 @@ const customBindFunc = sum.myBind(null, 2);
 console.log(customBindFunc(3,4));
 console.log(sum.myCall(null,2,3,4));
 console.log(sum.myApply(null,[2,3,4]));
+
+//-------------------------------------------------------------------------------------
+
+Function.prototype.myCallWithCustomContext = function(context, ...args){
+    if(!context) context = window;
+    
+    const unqId = Symbol();
+    context[unqId] = this;
+    const result = context[unqId](...args);
+    delete context[unqId];
+    return result;
+} 
+
+
+const person = { name: 'John' };
+
+// Example usage
+function greet(greeting, name) {
+    return `${greeting}, ${name}! My name is ${this.name}.`;
+}
+
+// Using the custom myCall method
+const result = greet.myCallWithCustomContext(person, 'Hello', 'Alice');
+console.log(result); // Output: "Hello, Alice! My name is John."
